@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function LoadingSkeleton() {
 	return (
-		<div className=' py-6 md:py-8'>
+		<div className='py-6 md:py-8'>
 			<div className='animate-pulse'>
 				<div className='h-6 w-1/2 bg-gray-300/50 rounded-sm mb-2'></div>
 				<div className='h-20 w-full bg-gray-300/50 rounded-sm mb-2'></div>

@@ -111,7 +111,7 @@ export default function ListArticles({ params }: ListArticlesProps) {
 
 function LoadingSkeletons() {
 	return (
-		<div className='flex flex-col gap-4'>
+		<div>
 			{[...Array(3)].map((_, index) => (
 				<LoadingSkeleton key={index} />
 			))}
@@ -133,15 +133,15 @@ function ArticleItem({ article, isFirst }: ArticleItemProps) {
 			} py-6 md:py-8`}
 			aria-label={`Read: ${article.title}`}>
 			<article>
-				<h2 className='text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+				<h2 className='text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 min-h-[1.5em] md:min-h-[1.2em]'>
 					{article.title}
 				</h2>
-				<p className='line-clamp-2 mt-2 text-gray-500 dark:text-gray-400 font-medium'>
+				<p className='line-clamp-2 mt-2 text-gray-500 dark:text-gray-400 font-medium min-h-[3em]'>
 					{article.body}
 				</p>
 
 				<ArticleStats
-					className='!mb-0 mt-2 !px-0 !py-0 border-none'
+					className='!mb-0 mt-2 !px-0 !py-0 border-none min-h-[24px] md:min-h-[32px]'
 					id={article.id.toString()}
 					title={article.title}
 					views={article.views}

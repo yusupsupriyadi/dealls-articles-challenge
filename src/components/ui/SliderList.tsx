@@ -53,13 +53,13 @@ interface CategoryListProps {
 	className?: string;
 }
 
-const SliderList: FC<CategoryListProps> = ({
+const SliderList: FC<CategoryListProps> = async ({
 	data,
 	active,
 	className = '',
 }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const [slidesToShow, setSlidesToShow] = useState(7);
+	const [slidesToShow, setSlidesToShow] = useState(8);
 	const sliderRef = useRef<Slider>(null);
 
 	const handleBeforeChange = useCallback(
@@ -83,7 +83,7 @@ const SliderList: FC<CategoryListProps> = ({
 		return () => window.removeEventListener('resize', handleBreakpoint);
 	}, [handleBreakpoint]);
 
-	const settings = {
+	const settings = await {
 		dots: false,
 		infinite: false,
 		speed: 500,
