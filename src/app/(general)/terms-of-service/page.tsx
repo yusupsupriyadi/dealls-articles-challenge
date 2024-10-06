@@ -5,9 +5,9 @@ import { Metadata } from 'next';
 export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Terms of Service',
-		description: 'Terms of Service Dealls Articles',
-		twitter: {
-			card: 'summary_large_image',
+		robots: {
+			index: false,
+			follow: true,
 		},
 	};
 }
@@ -16,15 +16,21 @@ export default function TermsOfService() {
 	return (
 		<div className='max-w-3xl mx-auto px-4 py-8 md:py-12'>
 			<div className='flex flex-wrap items-center text-sm gap-2'>
-				<Link href='/about' aria-label='About'>
+				<Link
+					href='/about'
+					aria-label='About'>
 					About
 				</Link>
 				/
-				<Link href='/privacy-policy' aria-label='Privacy'>
+				<Link
+					href='/privacy-policy'
+					aria-label='Privacy'>
 					Privacy
 				</Link>
 				/
-				<Link href='/terms-of-service' aria-label='Terms'>
+				<Link
+					href='/terms-of-service'
+					aria-label='Terms'>
 					Terms
 				</Link>
 			</div>

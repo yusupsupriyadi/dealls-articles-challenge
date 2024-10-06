@@ -5,10 +5,10 @@ import { Metadata } from 'next';
 export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: 'Privacy Policy',
-		description: 'Privacy Policy Dealls Articles',
-		twitter: {
-			card: 'summary_large_image',
-		},
+		robots: {
+			index: false,
+			follow: true
+		}
 	};
 }
 
