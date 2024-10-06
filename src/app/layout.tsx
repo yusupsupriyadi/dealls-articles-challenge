@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/ui/Navbar';
 import { Analytics } from '@vercel/analytics/next';
+import { Roboto, Lora } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 
-const geistSans = localFont({
-	src: './fonts/GeistVF.woff',
-	variable: '--font-geist-sans',
-	weight: '100 900',
+const roboto = Roboto({
+	weight: ['100', '300', '400', '500', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-roboto',
 });
-const geistMono = localFont({
-	src: './fonts/GeistMonoVF.woff',
-	variable: '--font-geist-mono',
-	weight: '100 900',
+
+const lora = Lora({
+	weight: ['400', '500', '600', '700'],
+	subsets: ['latin'],
+	variable: '--font-lora',
 });
 
 export const metadata: Metadata = {
@@ -20,7 +22,10 @@ export const metadata: Metadata = {
 		default: 'Dealls Articles',
 		template: '%s | Dealls Articles',
 	},
-	description: 'Dealls Articles come here',
+	description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+	twitter: {
+		card: 'summary_large_image',
+	},
 };
 
 export default function RootLayout({
@@ -29,14 +34,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
+		<html
+			lang='en'
+			suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<Navbar />
-				<main className='container mx-auto px-6 lg:px-0'>
+				className={`${lora.variable} ${roboto.variable} font-lora antialiased`}>
+				<ThemeProvider attribute='class'>
+					<Navbar />
 					{children}
-				</main>
-				<Analytics />
+					<Analytics />
+				</ThemeProvider>
 			</body>
 		</html>
 	);
