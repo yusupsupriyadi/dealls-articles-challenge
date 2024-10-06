@@ -112,7 +112,7 @@ export default function ListArticles({ params }: ListArticlesProps) {
 function LoadingSkeletons() {
 	return (
 		<div>
-			{[...Array(3)].map((_, index) => (
+			{[...Array(2)].map((_, index) => (
 				<LoadingSkeleton key={index} />
 			))}
 		</div>
