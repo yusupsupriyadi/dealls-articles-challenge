@@ -40,9 +40,9 @@ const CategorySection: React.FC<CategoryArticles> = ({
 	<div
 		key={category}
 		className='pb-6 md:pb-10'>
-		<h1 className='text-xl md:text-2xl font-bold capitalize border-b border-gray-300 dark:border-gray-700 pb-2'>
+		<h2 className='text-xl md:text-2xl font-bold capitalize border-b border-gray-300 dark:border-gray-700 pb-2'>
 			{category}
-		</h1>
+		</h2>
 		{articles.map((article) => (
 			<ArticleItem
 				key={article.id}
@@ -61,6 +61,7 @@ export default function ArticlesWithCategories({
 		<div>
 			<div className='sticky top-0 h-screen rounded-none p-0 md:p-4 !overflow-y-none lg:!overflow-y-auto'>
 				<div className=' pl-0 md:pl-10 pt-6 md:pt-10 '>
+					<h1 className="sr-only">Artikel dengan Kategori</h1>
 					<div className='flex items-center text-xs gap-2 mb-4'>
 						<Link href='/about' aria-label='About'>
 							About
