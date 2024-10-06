@@ -88,13 +88,14 @@ export const ArticleStats: React.FC<{
 		className,
 	);
 
-	const iconClasses = 'w-3 h-3 md:w-5 md:h-5 stroke-[1.2] ';
-	const iconActionClasses = 'w-3 h-3 md:w-5 md:h-5 stroke-[1.2]';
-	const textClasses = 'text-xs md:text-sm';
+	const iconClasses = 'w-4 h-4 md:w-5 md:h-5 stroke-[1.2] ';
+	const iconActionClasses = 'w-4 h-4 md:w-6 md:h-6 stroke-[1.2]';
+	const textClasses = 'text-sm md:text-base';
 	const statClasses =
-		'flex items-center gap-1 text-gray-600 dark:text-gray-400 p-4';
+		'flex items-center gap-2 text-gray-600 dark:text-gray-400 p-2 md:p-3';
 	const dropdownItemClasses =
-		'flex items-center gap-3 text-gray-800 dark:text-gray-400 p-4';
+		'flex items-center gap-3 text-gray-800 dark:text-gray-400 p-3 md:p-4';
+	const buttonClasses = 'p-2 md:p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary';
 
 	return (
 		<section className={sectionClasses}>
@@ -102,13 +103,13 @@ export const ArticleStats: React.FC<{
 				<div className={statClasses}>
 					<Eye className={iconClasses} />
 					<p className={textClasses}>
-						{FormatNumber(views, 'thousands')}
+							{FormatNumber(views, 'thousands')}
 					</p>
 				</div>
 				<button
 					type='button'
-					aria-label='Like'
-					className={statClasses}
+					aria-label='Suka'
+					className={twMerge(statClasses, buttonClasses)}
 					onClick={(e) => {
 						e.preventDefault();
 						e.stopPropagation();
@@ -125,14 +126,14 @@ export const ArticleStats: React.FC<{
 							textClasses,
 							likesCount > likes ? '!text-primary' : '',
 						)}>
-						{FormatNumber(likesCount, 'thousands')}
+							{FormatNumber(likesCount, 'thousands')}
 					</p>
 				</button>
 			</div>
 
 			<div className='flex items-center gap-4'>
 				<DropdownMenu>
-					<DropdownMenuTrigger className='focus:outline-none' aria-label="share article">
+					<DropdownMenuTrigger className={twMerge(buttonClasses, 'focus:ring-offset-2')} aria-label="Bagikan artikel">
 						<Share2
 							className={twMerge(
 								iconActionClasses,
@@ -140,7 +141,7 @@ export const ArticleStats: React.FC<{
 							)}
 						/>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent className='mt-4 space-y-3 p-2'>
+					<DropdownMenuContent className='mt-4 space-y-2'>
 						<DropdownMenuItem
 							className={twMerge(
 								dropdownItemClasses,
@@ -228,6 +229,7 @@ export const ArticleStats: React.FC<{
 				<button
 					type='button'
 					aria-label={isBookmarked ? 'Hapus bookmark artikel' : 'Bookmark artikel'}
+					className={buttonClasses}
 					onClick={(e) => {
 						e.preventDefault();
 						e.stopPropagation();
