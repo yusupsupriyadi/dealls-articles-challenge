@@ -53,7 +53,7 @@ interface CategoryListProps {
 	className?: string;
 }
 
-const SliderList: FC<CategoryListProps> = async ({
+const SliderList: FC<CategoryListProps> = ({
 	data,
 	active,
 	className = '',
@@ -83,7 +83,7 @@ const SliderList: FC<CategoryListProps> = async ({
 		return () => window.removeEventListener('resize', handleBreakpoint);
 	}, [handleBreakpoint]);
 
-	const settings = await {
+	const settings = {
 		dots: false,
 		infinite: false,
 		speed: 500,
