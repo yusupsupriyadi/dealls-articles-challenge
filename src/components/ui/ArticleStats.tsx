@@ -132,7 +132,7 @@ export const ArticleStats: React.FC<{
 
 			<div className='flex items-center gap-4'>
 				<DropdownMenu>
-					<DropdownMenuTrigger className='focus:outline-none'>
+					<DropdownMenuTrigger className='focus:outline-none' aria-label="share article">
 						<Share2
 							className={twMerge(
 								iconActionClasses,
@@ -227,7 +227,7 @@ export const ArticleStats: React.FC<{
 
 				<button
 					type='button'
-					aria-label='Bookmark'
+					aria-label={isBookmarked ? 'Hapus bookmark artikel' : 'Bookmark artikel'}
 					onClick={(e) => {
 						e.preventDefault();
 						e.stopPropagation();
