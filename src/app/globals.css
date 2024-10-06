@@ -90,7 +90,7 @@
 }
 
 .slick-slide-item {
-	@apply border-b dark:!border-gray-600 border-gray-200 py-4;
+	@apply py-4;
 }
 
 .slick-slide-item.slide-active {
@@ -141,3 +141,12 @@ li.slick-active div {
 		background: rgba(169, 169, 169, 0.7);
 	}
 }
+
+.scrollbar-hide {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+	display: none;  /* Chrome, Safari and Opera */
+  }

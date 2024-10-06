@@ -1,51 +1,8 @@
 'use client';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Slider from 'react-slick';
-import { FC, memo, useState, useCallback, useRef, useEffect } from 'react';
+import { FC, memo, useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
-
-interface ArrowButtonProps {
-	direction: 'next' | 'prev';
-	onClick?: () => void;
-	className?: string;
-	currentSlide: number;
-	slideCount: number;
-	slidesToShow: number;
-}
-
-const ArrowButton: FC<ArrowButtonProps> = memo(
-	({
-		direction,
-		onClick,
-		className,
-		currentSlide,
-		slideCount,
-		slidesToShow,
-	}) => {
-		const Icon = direction === 'next' ? ChevronRight : ChevronLeft;
-		const isEdge =
-			direction === 'prev'
-				? currentSlide === 0
-				: currentSlide >= slideCount - slidesToShow;
-		if (isEdge) return null;
-
-		return (
-			<Icon
-				strokeWidth={1}
-				className={twMerge(
-					'!text-black dark:!text-white !h-6 !w-6 z-50 cursor-pointer',
-					className,
-				)}
-				onClick={onClick}
-			/>
-		);
-	},
-);
-
-ArrowButton.displayName = 'ArrowButton';
 
 interface CategoryListProps {
 	data: string[];
@@ -53,75 +10,63 @@ interface CategoryListProps {
 	className?: string;
 }
 
-const SliderList: FC<CategoryListProps> = ({
+const SliderList: FC<CategoryListProps> = memo(({
 	data,
 	active,
 	className = '',
 }) => {
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const [slidesToShow, setSlidesToShow] = useState(8);
-	const sliderRef = useRef<Slider>(null);
+	const [scrollPosition, setScrollPosition] = useState(0);
+	const containerRef = useRef<HTMLDivElement>(null);
 
-	const handleBeforeChange = useCallback(
-		(oldIndex: number, newIndex: number) => {
-			setCurrentSlide(newIndex);
-		},
-		[],
-	);
-
-	const handleBreakpoint = useCallback(() => {
-		const breakpoint = window.innerWidth;
-		if (breakpoint <= 480) setSlidesToShow(4);
-		else if (breakpoint <= 600) setSlidesToShow(5);
-		else if (breakpoint <= 1024) setSlidesToShow(6);
-		else setSlidesToShow(8);
+	const handleScroll = useCallback(() => {
+		if (containerRef.current) {
+			setScrollPosition(containerRef.current.scrollLeft);
+		}
 	}, []);
 
-	useEffect(() => {
-		handleBreakpoint();
-		window.addEventListener('resize', handleBreakpoint);
-		return () => window.removeEventListener('resize', handleBreakpoint);
-	}, [handleBreakpoint]);
+	const isAtStart = scrollPosition === 0;
+	const isAtEnd = containerRef.current
+		? scrollPosition + containerRef.current.clientWidth >=
+		  containerRef.current.scrollWidth
+		: false;
 
-	const settings = {
-		dots: false,
-		infinite: false,
-		speed: 500,
-		slidesToShow: slidesToShow,
-		slidesToScroll: 1,
-		beforeChange: handleBeforeChange,
-		onReInit: handleBreakpoint,
-		nextArrow: (
-			<ArrowButton
-				direction='next'
-				currentSlide={currentSlide}
-				slideCount={data.length}
-				slidesToShow={slidesToShow}
-				className='absolute top-1/2 transform -translate-y-1/2 right-2'
-			/>
-		),
-		prevArrow: (
-			<ArrowButton
-				direction='prev'
-				currentSlide={currentSlide}
-				slideCount={data.length}
-				slidesToShow={slidesToShow}
-			/>
-		),
-	};
+	const scrollSmoothly = useCallback((distance: number) => {
+		if (containerRef.current) {
+			containerRef.current.scrollTo({
+				left: containerRef.current.scrollLeft + distance,
+				behavior: 'smooth',
+			});
+		}
+	}, []);
 
-	const isLastSlideVisible = currentSlide + slidesToShow >= data.length + 1;
-	const isFirstSlideVisible = currentSlide === 0;
+	const renderScrollButton = useCallback((direction: 'left' | 'right') => {
+		const isLeft = direction === 'left';
+		const shouldRender = isLeft ? !isAtStart : !isAtEnd;
+		if (!shouldRender) return null;
+
+		const Icon = isLeft ? ChevronLeft : ChevronRight;
+		return (
+			<>
+				<div className={`absolute top-0 ${isLeft ? 'left-0' : 'right-0'} h-full w-32 from-30% bg-gradient-to-${isLeft ? 'r' : 'l'} from-white to-transparent dark:from-background dark:to-transparent`} />
+				<button
+					onClick={() => scrollSmoothly(isLeft ? -100 : 100)}
+					aria-label={isLeft ? 'Previous' : 'Next'}
+					className={`absolute top-1/2 -translate-y-1/2 ${isLeft ? 'left-0' : 'right-0'} p-4 cursor-pointer`}>
+					<Icon className='h-6 w-6 stroke-1 text-gray-500 dark:text-gray-400' />
+				</button>
+			</>
+		);
+	}, [isAtStart, isAtEnd, scrollSmoothly]);
 
 	return (
-		<div
-			className={twMerge(
-				`slider-container sticky top-0 bg-white dark:bg-black`,
-				className,
-			)}>
-			<Slider
-				ref={sliderRef}
-				{...settings}>
+		<div className='relative'>
+			<div
+				ref={containerRef}
+				onScroll={handleScroll}
+				className={twMerge(
+					'flex items-center gap-8 overflow-x-auto scrollbar-hide border-b border-gray-200 dark:border-gray-800',
+					className,
+				)}>
 				<Link
 					aria-label='For you'
 					href='/'
@@ -129,9 +74,9 @@ const SliderList: FC<CategoryListProps> = ({
 						'slick-slide-item',
 						active === undefined && 'slide-active',
 					)}>
-					For you
+					<p className='line-clamp-1 w-[60px]'>For you</p>
 				</Link>
-				{data.map((category, index) => (
+				{data.slice(0, 20).map((category) => (
 					<Link
 						key={category}
 						aria-label={`Category: ${category}`}
@@ -140,23 +85,18 @@ const SliderList: FC<CategoryListProps> = ({
 							'slick-slide-item',
 							active === category && 'slide-active',
 						)}>
-						<h3
-							className={twMerge(
-								`capitalize text-start font-serif`,
-								index + 1 === currentSlide &&
-									!isFirstSlideVisible &&
-									'bg-gradient-to-l from-black dark:from-white bg-clip-text text-transparent from-10%',
-								index + 1 === currentSlide + slidesToShow - 1 &&
-									!isLastSlideVisible &&
-									'bg-gradient-to-r  from-black dark:from-white bg-clip-text text-transparent',
-							)}>
+						<h3 className='capitalize text-start font-serif'>
 							{category}
 						</h3>
 					</Link>
 				))}
-			</Slider>
+			</div>
+			{renderScrollButton('left')}
+			{renderScrollButton('right')}
 		</div>
 	);
-};
+});
 
-export default memo(SliderList);
+SliderList.displayName = 'SliderList';
+
+export default SliderList;
