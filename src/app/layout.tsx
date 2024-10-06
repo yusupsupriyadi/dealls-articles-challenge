@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/ui/Navbar';
-import { Analytics } from '@vercel/analytics/next';
 import { Roboto, Lora } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
@@ -42,7 +41,6 @@ export default function RootLayout({
 				<ThemeProvider attribute='class'>
 					<Navbar />
 					{children}
-					<Analytics />
 				</ThemeProvider>
 			</body>
 		</html>
