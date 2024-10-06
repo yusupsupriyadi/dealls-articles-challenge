@@ -1,40 +1,45 @@
-import ArticlesWithCategories from '@/components/ArticlesWithCategories';
-import React from 'react';
+import ArticlesWithCategories from '@/components/ui/ArticlesWithCategories';
+import { CategoryArticles } from '@/components/interface/CategoryArticles';
+import { Article } from '@/components/interface/Article';
+import { fetchData } from '@/services/fetch';
 
-export default async function layout({ children }: { children: React.ReactNode }) {
-	const dataCategories = async () => {
-		const res = await fetch('https://dummyjson.com/posts/tag-list');
-		const data = await res.json();
-		return data;
-	};
+async function getCategories(): Promise<string[]> {
+	return fetchData<string[]>(`/posts/tag-list`);
+}
 
-	const dataArticlesByCategory = async (categories: string[]) => {
-		const firstFiveCategories = categories.slice(0, 5);
-		const articlesGrouped = await Promise.all(
-			firstFiveCategories.map(async (category) => {
-				const res = await fetch(
-					`https://dummyjson.com/posts/tag/${category}?limit=5`,
-				);
-				const data = await res.json();
-				return {
-					category,
-					articles: data.posts,
-				};
-			}),
-		);
-		return articlesGrouped;
-	};
+async function getArticlesByCategory(
+	categories: string[],
+): Promise<CategoryArticles[]> {
+	const firstFiveCategories = categories.slice(0, 5);
+	return Promise.all(
+		firstFiveCategories.map(async (category) => ({
+			category,
+			articles: await fetchData<{ posts: Article[] }>(
+				`/posts/tag/${category}`,
+				{ limit: '5', sortBy: 'views', order: 'desc' },
+			).then((data) => data.posts),
+		})),
+	);
+}
 
-	const categories = await dataCategories();
-	const articlesByCategory = await dataArticlesByCategory(categories);
+export default async function Layout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const categories = await getCategories();
+	const articlesByCategory = await getArticlesByCategory(categories);
 
 	return (
-		<div className='md:grid md:grid-cols-3 gap-4 md:divide-x'>
-			<section className='md:col-span-2 md:pr-12 pt-10'>
-				{children}
-			</section>
-
-			<ArticlesWithCategories data={articlesByCategory} />
-		</div>
+		<main className='container-xl mx-auto px-6 lg:px-0'>
+			<div className='md:grid md:grid-cols-3 gap-4 md:divide-x md:divide-gray-500'>
+				<section className='md:col-span-2 md:pr-12 pt-10'>
+					{children}
+				</section>
+				<ArticlesWithCategories
+					data={articlesByCategory as CategoryArticles[]}
+				/>
+			</div>
+		</main>
 	);
 }
