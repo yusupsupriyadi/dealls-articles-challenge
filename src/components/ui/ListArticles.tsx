@@ -136,7 +136,7 @@ function ArticleItem({ article, isFirst }: ArticleItemProps) {
 				<h2 className='text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100 min-h-[1.5em] md:min-h-[1.2em]'>
 					{article.title}
 				</h2>
-				<p className='line-clamp-2 mt-2 text-gray-500 dark:text-gray-400 font-medium'>
+				<p className='line-clamp-2 mt-2 text-sm md:text-base text-gray-500 dark:text-gray-400 font-medium'>
 					{article.body}
 				</p>
 
