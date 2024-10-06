@@ -1,4 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dealls Articles Challenge Project Documentation
+
+## Project Description
+This is a Next.js project created for the Dealls articles challenge. It utilizes various modern technologies to build a responsive and customizable web application.
+
+## Core Technologies
+- Next.js 14.2.14
+- React 18
+- TypeScript
+- Tailwind CSS
+
+## Main Dependencies
+- @radix-ui/react-dropdown-menu: ^2.1.2
+- @radix-ui/react-icons: ^1.3.0
+- @radix-ui/react-popover: ^1.1.2
+- @radix-ui/react-scroll-area: ^1.2.0
+- @vercel/analytics: ^1.3.1
+- axios: ^1.7.7
+- class-variance-authority: ^0.7.0
+- clsx: ^2.1.1
+- lucide-react: ^0.447.0
+- next-themes: ^0.3.0
+- react-infinite-scroll-component: ^6.1.0
+- react-slick: ^0.30.2
+- slick-carousel: ^1.8.1
+- tailwind-merge: ^2.5.3
+- tailwindcss-animate: ^1.0.7
+- usehooks-ts: ^3.1.0
+
+## Tailwind Configuration
+This project uses a customized Tailwind configuration, including:
+- Dark theme
+- Custom colors
+- Custom fonts (Roboto and Lora)
+- Animation plugin
+
+## Project Structure
+- `src/app`: Contains main Next.js application components
+- `src/components`: Reusable React components
+- `src/services`: Services for data fetching
+
+## Key Features
+1. Dark/Light Theme
+2. Vercel Analytics
+3. SEO Optimization (sitemap and robots.txt)
+4. Customizable UI Components
+5. Infinite scrolling
+6. Carousel using react-slick
+
+## Project Setup
+1. Copy `.env.example` to `.env`
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+
+## Available Scripts
+- `dev`: Run development server
+- `build`: Build the application for production
+- `start`: Run the built application
+- `lint`: Run ESLint
+- `postinstall`: Copy .env.example to .env
+
+## SEO Optimization
+This project includes:
+- Dynamic sitemap (`src/app/sitemap.ts`)
+- Robots.txt file (`src/app/robots.ts`)
+- Customizable metadata for each page
+
+## Styling and Theming
+- Uses Tailwind CSS for styling
+- Toggleable dark/light theme
+- Custom fonts: Roboto and Lora
+
+## Custom Components
+- Navbar
+- Various UI components from Radix UI
+
+## Analytics
+Uses Vercel Analytics to track site performance and usage.
+
+## Future Development
+- Add more pages and features
+- Improve performance and accessibility
+- Add testing
+
+For more information on development and deployment, refer to the official Next.js documentation.
 
 ## Getting Started
 
