@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { Metadata } from 'next';
 import type { Article } from '@/components/interface/Article';
-import { ArticleStats } from './partials/ArticleStats';
+import { ArticleStats } from '../../../../components/ui/ArticleStats';
 import { fetchData } from '@/services/fetch';
 
 async function getArticleData(slug: string): Promise<Article> {

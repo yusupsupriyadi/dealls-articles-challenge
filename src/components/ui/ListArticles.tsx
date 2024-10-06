@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadingSkeleton from './LoadingSkeleton';
 import { Article } from '@/components/interface/Article';
-import { ArticleStats } from '@/app/(article)/article/[slug]/partials/ArticleStats';
+import { ArticleStats } from './ArticleStats';
 
 interface ListArticlesProps {
 	params: { category: string };
