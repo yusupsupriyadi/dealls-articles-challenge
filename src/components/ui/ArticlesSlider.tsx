@@ -28,24 +28,24 @@ export default function ArticlesSlider({ data }: { data: Article[] }) {
 		<div className='slider-container rounded-lg overflow-hidden dark:shadow-gray-700'>
 			<Slider {...settings}>
 				{data.map((item: Article) => (
-					<div
+					<Link
 						key={item.id}
-						className='relative h-40 md:h-64'>
-						<div className='absolute inset-0 flex flex-col justify-center items-start p-1'>
-							<h1 className='text-2xl md:text-4xl font-bold mb-2 md:mb-4 line-clamp-1 dark:text-gray-100'>
-								{item.title}
-							</h1>
-							<p className='text-base md:text-xl mb-3 md:mb-6 line-clamp-2 dark:text-gray-300'>
-								{item.body}
-							</p>
-							<Link
-								aria-label={`Read: ${item.title}`}
-								href={`/article/${item.id}`}
-								className='bg-primary text-white px-4 py-1 md:px-6 md:py-2 rounded-full hover:bg-opacity-80 transition duration-300 text-sm md:text-base '>
-								Read More
-							</Link>
-						</div>
-					</div>
+						aria-label={`Read: ${item.title}`}
+						href={`/article/${item.id}`}>
+						<article className='relative h-40 md:h-64'>
+							<div className='absolute inset-0 flex flex-col justify-center items-start p-1'>
+								<h1 className='text-2xl md:text-4xl font-bold mb-2 md:mb-4 line-clamp-1 dark:text-gray-100'>
+									{item.title}
+								</h1>
+								<p className='text-base md:text-xl mb-3 md:mb-6 line-clamp-2 dark:text-gray-300'>
+									{item.body}
+								</p>
+								<button className='bg-primary text-white px-4 py-1 md:px-6 md:py-2 rounded-full hover:bg-opacity-80 transition duration-300 text-sm md:text-base '>
+									Read More
+								</button>
+							</div>
+						</article>
+					</Link>
 				))}
 			</Slider>
 			<style jsx>{`

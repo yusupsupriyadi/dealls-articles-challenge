@@ -146,7 +146,8 @@ export const ArticleStats: React.FC<{
 								dropdownItemClasses,
 								'text-gray-600 dark:text-gray-400',
 							)}
-							onSelect={copyToClipboard}>
+							onSelect={copyToClipboard}
+							aria-label='Copy link'>
 							<LinkIcon
 								className={iconClasses}
 								strokeWidth={1}
@@ -163,6 +164,7 @@ export const ArticleStats: React.FC<{
 
 						<DropdownMenuItem
 							className={dropdownItemClasses}
+							aria-label='Share on Twitter'
 							onSelect={() => handleShare('twitter')}>
 							<Twitter
 								className={iconClasses}
@@ -174,6 +176,7 @@ export const ArticleStats: React.FC<{
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className={dropdownItemClasses}
+							aria-label='Share on Facebook'
 							onSelect={() => handleShare('facebook')}>
 							<Facebook
 								className={iconClasses}
@@ -185,6 +188,7 @@ export const ArticleStats: React.FC<{
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className={dropdownItemClasses}
+							aria-label='Share on LinkedIn'
 							onSelect={() => handleShare('linkedin')}>
 							<Linkedin
 								className={iconClasses}
@@ -196,6 +200,7 @@ export const ArticleStats: React.FC<{
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className={dropdownItemClasses}
+							aria-label='Share on WhatsApp'
 							onSelect={() => handleShare('whatsapp')}>
 							<Phone
 								className={iconClasses}
@@ -207,6 +212,7 @@ export const ArticleStats: React.FC<{
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className={dropdownItemClasses}
+							aria-label='Share on Telegram'
 							onSelect={() => handleShare('telegram')}>
 							<Send
 								className={iconClasses}

@@ -91,7 +91,7 @@ export default async function Article({
 						key={article.id}
 						aria-label={`Read: ${article.title}`}
 						className='block'>
-						<div>
+						<article>
 							<h3 className='font-semibold text-lg mb-2'>
 								{article.title}
 							</h3>
@@ -106,7 +106,7 @@ export default async function Article({
 								views={article.views}
 								likes={article.reactions.likes}
 							/>
-						</div>
+						</article>
 					</Link>
 				))}
 			</div>
