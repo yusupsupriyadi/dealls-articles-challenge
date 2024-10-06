@@ -58,7 +58,7 @@ export const ArticleStats: React.FC<{
 				shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${encodedTitle}`;
 				break;
 			case 'whatsapp':
-				shareUrl = `https://web.whatsapp.com/send?text=${encodeURIComponent(
+				shareUrl = `https://wa.me/?text=${encodeURIComponent(
 					`${title}\n${url}`,
 				)}`;
 				break;
@@ -95,7 +95,8 @@ export const ArticleStats: React.FC<{
 		'flex items-center gap-2 text-gray-600 dark:text-gray-400 p-2 md:p-3';
 	const dropdownItemClasses =
 		'flex items-center gap-3 text-gray-800 dark:text-gray-400 p-3 md:p-4';
-	const buttonClasses = 'p-2 md:p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary';
+	const buttonClasses =
+		'p-2 md:p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary';
 
 	return (
 		<section className={sectionClasses}>
@@ -103,7 +104,7 @@ export const ArticleStats: React.FC<{
 				<div className={statClasses}>
 					<Eye className={iconClasses} />
 					<p className={textClasses}>
-							{FormatNumber(views, 'thousands')}
+						{FormatNumber(views, 'thousands')}
 					</p>
 				</div>
 				<button
@@ -126,14 +127,19 @@ export const ArticleStats: React.FC<{
 							textClasses,
 							likesCount > likes ? '!text-primary' : '',
 						)}>
-							{FormatNumber(likesCount, 'thousands')}
+						{FormatNumber(likesCount, 'thousands')}
 					</p>
 				</button>
 			</div>
 
 			<div className='flex items-center gap-4'>
 				<DropdownMenu>
-					<DropdownMenuTrigger className={twMerge(buttonClasses, 'focus:ring-offset-2')} aria-label="Bagikan artikel">
+					<DropdownMenuTrigger
+						className={twMerge(
+							buttonClasses,
+							'focus:ring-offset-2',
+						)}
+						aria-label='Bagikan artikel'>
 						<Share2
 							className={twMerge(
 								iconActionClasses,
@@ -228,7 +234,11 @@ export const ArticleStats: React.FC<{
 
 				<button
 					type='button'
-					aria-label={isBookmarked ? 'Hapus bookmark artikel' : 'Bookmark artikel'}
+					aria-label={
+						isBookmarked
+							? 'Hapus bookmark artikel'
+							: 'Bookmark artikel'
+					}
 					className={buttonClasses}
 					onClick={(e) => {
 						e.preventDefault();
