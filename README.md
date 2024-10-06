@@ -1,5 +1,8 @@
 # Dealls Articles Challenge Project Documentation
 
+![image](https://github.com/user-attachments/assets/ac6ecab8-0407-404a-8d7a-a4b4a42e286e)
+
+
 ## Project Description
 This is a Next.js project created for the Dealls articles challenge. It utilizes various modern technologies to build a responsive and customizable web application.
 
