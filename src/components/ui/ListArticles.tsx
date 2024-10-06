@@ -141,6 +141,7 @@ function ArticleItem({ article, isFirst }: ArticleItemProps) {
 				</p>
 				<ArticleStats
 					className='!mb-0 mt-4 !px-0 !py-0 border-none'
+					id={article.id.toString()}
 					title={article.title}
 					views={article.views}
 					likes={article.reactions.likes}

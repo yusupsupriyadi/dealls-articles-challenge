@@ -53,6 +53,7 @@ export default async function Article({
 				{data.title}
 			</h1>
 			<ArticleStats
+				id={data.id.toString()}
 				title={data.title}
 				views={data.views}
 				likes={data.reactions.likes}
@@ -74,6 +75,7 @@ export default async function Article({
 				))}
 			</div>
 			<ArticleStats
+				id={data.id.toString()}
 				className='mt-8 border-none'
 				title={data.title}
 				views={data.views}
@@ -97,6 +99,7 @@ export default async function Article({
 
 							<ArticleStats
 								className='!mt-1 !mb-0 !px-0 border-none'
+								id={article.id.toString()}
 								title={article.title}
 								views={article.views}
 								likes={article.reactions.likes}

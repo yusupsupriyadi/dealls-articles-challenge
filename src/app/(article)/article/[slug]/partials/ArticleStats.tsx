@@ -29,7 +29,8 @@ export const ArticleStats: React.FC<{
 	likes: number;
 	title: string;
 	className?: string;
-}> = ({ views, likes, title, className = '' }) => {
+	id: string;
+}> = ({ views, likes, title, className = '', id }) => {
 	const pathname = usePathname();
 	const [isBookmarked, setIsBookmarked] = useState(false);
 	const [isLiked, setIsLiked] = useState(false);
@@ -38,7 +39,8 @@ export const ArticleStats: React.FC<{
 	const handleShare = (platform: string) => {
 		const url =
 			typeof window !== 'undefined'
-				? window.location.origin + pathname
+				? window.location.origin +
+				  (pathname === '/' ? `/article/${id}` : pathname)
 				: '';
 		let shareUrl = '';
 		const encodedUrl = encodeURIComponent(url);
@@ -71,7 +73,11 @@ export const ArticleStats: React.FC<{
 	};
 
 	const copyToClipboard = () => {
-		const url = typeof window !== 'undefined' ? window.location.href : '';
+		const url =
+			typeof window !== 'undefined'
+				? window.location.origin +
+				  (pathname === '/' ? `/article/${id}` : pathname)
+				: '';
 		navigator.clipboard.writeText(url).then(() => {
 			// Add notification or feedback here if needed
 		});
