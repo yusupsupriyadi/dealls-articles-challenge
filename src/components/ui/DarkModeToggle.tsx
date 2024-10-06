@@ -15,6 +15,7 @@ const DarkModeToggle: React.FC = () => {
 
 	return (
 		<button
+			aria-label='Toggle dark mode'
 			onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 			className={buttonClasses}>
 			<Moon className='w-4 h-4 hidden dark:block dark:text-white text-black' />

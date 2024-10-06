@@ -88,13 +88,13 @@ export const ArticleStats: React.FC<{
 		className,
 	);
 
-	const iconClasses = 'w-3 h-3 md:w-4 md:h-4 stroke-[1.2]';
+	const iconClasses = 'w-3 h-3 md:w-5 md:h-5 stroke-[1.2] ';
 	const iconActionClasses = 'w-3 h-3 md:w-5 md:h-5 stroke-[1.2]';
 	const textClasses = 'text-xs md:text-sm';
 	const statClasses =
-		'flex items-center gap-1 text-gray-600 dark:text-gray-400';
+		'flex items-center gap-1 text-gray-600 dark:text-gray-400 p-4';
 	const dropdownItemClasses =
-		'flex items-center gap-3 text-gray-800 dark:text-gray-400';
+		'flex items-center gap-3 text-gray-800 dark:text-gray-400 p-4';
 
 	return (
 		<section className={sectionClasses}>
@@ -107,6 +107,7 @@ export const ArticleStats: React.FC<{
 				</div>
 				<button
 					type='button'
+					aria-label='Like'
 					className={statClasses}
 					onClick={(e) => {
 						e.preventDefault();
@@ -220,6 +221,7 @@ export const ArticleStats: React.FC<{
 
 				<button
 					type='button'
+					aria-label='Bookmark'
 					onClick={(e) => {
 						e.preventDefault();
 						e.stopPropagation();
