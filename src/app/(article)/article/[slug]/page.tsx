@@ -69,6 +69,7 @@ export default async function Article({
 					<Link
 						href={`/?category=${tag}`}
 						key={tag}
+						aria-label={`Read: ${tag}`}
 						className='text-xs md:text-sm bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-3xl text-gray-800 dark:text-gray-300 capitalize'>
 						{tag}
 					</Link>
@@ -88,6 +89,7 @@ export default async function Article({
 					<Link
 						href={`/article/${article.id}`}
 						key={article.id}
+						aria-label={`Read: ${article.title}`}
 						className='block'>
 						<div>
 							<h3 className='font-semibold text-lg mb-2'>

@@ -39,6 +39,7 @@ export default function ArticlesSlider({ data }: { data: Article[] }) {
 								{item.body}
 							</p>
 							<Link
+								aria-label={`Read: ${item.title}`}
 								href={`/article/${item.id}`}
 								className='bg-primary text-white px-4 py-1 md:px-6 md:py-2 rounded-full hover:bg-opacity-80 transition duration-300 text-sm md:text-base '>
 								Read More

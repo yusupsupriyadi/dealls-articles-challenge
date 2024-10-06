@@ -126,27 +126,28 @@ interface ArticleItemProps {
 
 function ArticleItem({ article, isFirst }: ArticleItemProps) {
 	return (
-		<Link href={`/article/${article.id}`}>
-			<div
-				className={`${
-					isFirst
-						? ''
-						: 'border-t dark:border-gray-700 border-gray-200'
-				} py-6 md:py-8`}>
-				<h1 className='text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
+		<Link
+			href={`/article/${article.id}`}
+			className={`block ${
+				isFirst ? '' : 'border-t dark:border-gray-700 border-gray-200'
+			} py-6 md:py-8`}
+			aria-label={`Read: ${article.title}`}>
+			<article>
+				<h2 className='text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-100'>
 					{article.title}
-				</h1>
+				</h2>
 				<p className='line-clamp-2 mt-2 text-gray-500 dark:text-gray-400 font-medium'>
 					{article.body}
 				</p>
+
 				<ArticleStats
-					className='!mb-0 mt-4 !px-0 !py-0 border-none'
+					className='!mb-0 mt-2 !px-0 !py-0 border-none'
 					id={article.id.toString()}
 					title={article.title}
 					views={article.views}
 					likes={article.reactions.likes}
 				/>
-			</div>
+			</article>
 		</Link>
 	);
 }

@@ -7,6 +7,7 @@ import FormatNumber from '@/utils/FormatNumber';
 
 const ArticleItem: React.FC<{ article: Article }> = ({ article }) => (
 	<Link
+		aria-label={`Read: ${article.title}`}
 		href={`/article/${article.id}`}
 		key={article.id}>
 		<div className='py-3'>
@@ -61,9 +62,17 @@ export default function ArticlesWithCategories({
 			<div className='sticky top-0 h-screen rounded-none p-0 md:p-4 !overflow-y-none lg:!overflow-y-auto'>
 				<div className=' pl-0 md:pl-10 pt-6 md:pt-10 '>
 					<div className='flex items-center text-xs gap-2 mb-4'>
-						<Link href='/about'>About</Link>/
-						<Link href='/privacy-policy'>Privacy</Link>/
-						<Link href='/terms-of-service'>Terms</Link>
+						<Link href='/about' aria-label='About'>
+							About
+						</Link>
+						/
+						<Link href='/privacy-policy' aria-label='Privacy'>
+							Privacy
+						</Link>
+						/
+						<Link href='/terms-of-service' aria-label='Terms'>
+							Terms
+						</Link>
 					</div>
 					{data.map((item) => (
 						<CategorySection

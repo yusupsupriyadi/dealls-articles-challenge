@@ -17,9 +17,23 @@ export default function About() {
 	return (
 		<div className='max-w-3xl mx-auto px-4 py-12'>
 			<div className='flex items-center text-sm gap-2'>
-				<Link href='/about'>About</Link>/
-				<Link href='/privacy-policy'>Privacy</Link>/
-				<Link href='/terms-of-service'>Terms</Link>
+				<Link
+					href='/about'
+					aria-label='About'>
+					About
+				</Link>
+				/
+				<Link
+					href='/privacy-policy'
+					aria-label='Privacy'>
+					Privacy
+				</Link>
+				/
+				<Link
+					href='/terms-of-service'
+					aria-label='Terms'>
+					Terms
+				</Link>
 			</div>
 
 			<header className='text-start mb-12 mt-12'>

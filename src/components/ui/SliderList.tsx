@@ -123,6 +123,7 @@ const SliderList: FC<CategoryListProps> = ({
 				ref={sliderRef}
 				{...settings}>
 				<Link
+					aria-label='For you'
 					href='/'
 					className={twMerge(
 						'slick-slide-item',
@@ -133,6 +134,7 @@ const SliderList: FC<CategoryListProps> = ({
 				{data.map((category, index) => (
 					<Link
 						key={category}
+						aria-label={`Category: ${category}`}
 						href={`/?category=${category}`}
 						className={twMerge(
 							'slick-slide-item',

@@ -16,9 +16,17 @@ export default function TermsOfService() {
 	return (
 		<div className='max-w-3xl mx-auto px-4 py-8 md:py-12'>
 			<div className='flex flex-wrap items-center text-sm gap-2'>
-				<Link href='/about'>About</Link>/
-				<Link href='/privacy-policy'>Privacy</Link>/
-				<Link href='/terms-of-service'>Terms</Link>
+				<Link href='/about' aria-label='About'>
+					About
+				</Link>
+				/
+				<Link href='/privacy-policy' aria-label='Privacy'>
+					Privacy
+				</Link>
+				/
+				<Link href='/terms-of-service' aria-label='Terms'>
+					Terms
+				</Link>
 			</div>
 
 			<header className='text-start mb-8 mt-8 md:mb-12 md:mt-12'>
