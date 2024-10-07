@@ -16,6 +16,7 @@ export default function Navbar() {
 	const [debouncedSearchTerm] = useDebounceValue<string>(searchTerm, 300);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const dropdownRef = useRef<HTMLDivElement>(null);
+	const [isMobile, setIsMobile] = useState(false);
 
 	const handleSearch = async (value: string) => {
 		if (value.length > 2) {
@@ -48,6 +49,17 @@ export default function Navbar() {
 		setIsOpen(true);
 	};
 
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
+
+		handleResize();
+		window.addEventListener('resize', handleResize);
+
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
 	useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
 	return (
@@ -65,7 +77,7 @@ export default function Navbar() {
 
 							<div
 								className='relative block md:hidden mt-2'
-								ref={dropdownRef}>
+								ref={isMobile ? dropdownRef : null}>
 								<input
 									ref={inputRef}
 									onChange={handleInputChange}
@@ -78,18 +90,18 @@ export default function Navbar() {
 								<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400' />
 
 								{isOpen && dataBySearch.posts.length !== 0 && (
-									<div className='absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg py-3'>
+									<div className='absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg dark:shadow-sm py-3'>
 										{dataBySearch.posts.map(
 											(item: Article) => (
 												<Link
-													aria-label={`Read: ${item.title}`}
+													aria-label={`Baca: ${item.title}`}
 													href={`/article/${item.id}`}
 													key={item.id}
-													className='block px-4 py-2 leading-5 hover:bg-gray-100 text-sm'
+													className='block px-4 py-2 leading-5 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
 													onClick={() =>
 														setIsOpen(false)
 													}>
-													{item.title}
+													{item.title}{' '}
 													<ExternalLink className='w-4 h-4 inline-block ml-1' />
 												</Link>
 											),
@@ -101,7 +113,7 @@ export default function Navbar() {
 
 						<div
 							className='relative hidden md:block'
-							ref={dropdownRef}>
+							ref={isMobile ? null : dropdownRef}>
 							<input
 								ref={inputRef}
 								onChange={handleInputChange}
