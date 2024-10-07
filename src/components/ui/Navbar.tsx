@@ -114,13 +114,13 @@ export default function Navbar() {
 							<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400' />
 
 							{isOpen && dataBySearch.posts.length !== 0 && (
-								<div className='absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg  py-3'>
+								<div className='absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg dark:shadow-sm py-3'>
 									{dataBySearch.posts.map((item: Article) => (
 										<Link
-											aria-label={`Read: ${item.title}`}
+											aria-label={`Baca: ${item.title}`}
 											href={`/article/${item.id}`}
 											key={item.id}
-											className='block px-4 py-2 leading-5 hover:bg-gray-100'
+											className='block px-4 py-2 leading-5 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
 											onClick={() => setIsOpen(false)}>
 											{item.title}{' '}
 											<ExternalLink className='w-4 h-4 inline-block ml-1' />

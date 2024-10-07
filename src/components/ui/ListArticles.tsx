@@ -60,8 +60,8 @@ export default function ListArticles({ params }: ListArticlesProps) {
 		// Reset state dan ambil data awal
 		setArticles([]);
 		skipRef.current = 0;
-		setHasMore(true);
 		fetchArticles();
+		setHasMore(true);
 
 		return () => window.removeEventListener('resize', checkIsMobile);
 	}, [category, fetchArticles]);
@@ -87,7 +87,7 @@ export default function ListArticles({ params }: ListArticlesProps) {
 			{isMobile ? (
 				<>
 					{renderArticles()}
-					{hasMore && (
+					{!isFetchingRef.current && hasMore && (
 						<button
 							onClick={loadMore}
 							className='w-full py-2 mt-4 bg-gray-200 text-gray-800 rounded-md cursor-pointer'>

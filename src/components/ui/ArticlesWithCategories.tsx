@@ -61,27 +61,35 @@ export default function ArticlesWithCategories({
 		<div>
 			<div className='sticky top-0 h-screen rounded-none p-0 md:p-4 !overflow-y-none lg:!overflow-y-auto'>
 				<div className=' pl-0 md:pl-10 pt-6 md:pt-10 '>
-					<h1 className="sr-only">Artikel dengan Kategori</h1>
-					<div className='flex items-center text-xs gap-2 mb-4'>
-						<Link href='/about' aria-label='About'>
-							About
-						</Link>
-						/
-						<Link href='/privacy-policy' aria-label='Privacy'>
-							Privacy
-						</Link>
-						/
-						<Link href='/terms-of-service' aria-label='Terms'>
-							Terms
-						</Link>
-					</div>
+					<h1 className='sr-only'>Artikel dengan Kategori</h1>
+
 					{data.map((item) => (
 						<CategorySection
 							key={item.category}
 							{...item}
 						/>
 					))}
+
 					<div className='flex items-center text-xs gap-2 mb-4'>
+						<Link
+							href='/about'
+							aria-label='About'>
+							About
+						</Link>
+						/
+						<Link
+							href='/privacy-policy'
+							aria-label='Privacy'>
+							Privacy
+						</Link>
+						/
+						<Link
+							href='/terms-of-service'
+							aria-label='Terms'>
+							Terms
+						</Link>
+					</div>
+					<div className='flex items-center text-xs gap-2 pb-8'>
 						Copyright © 2024 Dealls. All rights reserved.
 					</div>
 				</div>
