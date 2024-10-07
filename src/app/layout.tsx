@@ -4,6 +4,7 @@ import Navbar from '@/components/ui/Navbar';
 import { Roboto, Lora } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const roboto = Roboto({
 	weight: ['100', '300', '400', '500', '700', '900'],
@@ -57,6 +58,7 @@ export default function RootLayout({
 					{children}
 				</ThemeProvider>
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
