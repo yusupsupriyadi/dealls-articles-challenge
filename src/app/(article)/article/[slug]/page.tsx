@@ -83,7 +83,7 @@ export default async function Article({
 				likes={data.reactions.likes}
 			/>
 
-			<h2 className='text-2xl font-bold mt-8'>Rekomendasi dari Dealls</h2>
+			<h2 className='text-2xl font-bold mt-8'>Recommendations from Dealls</h2>
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-8'>
 				{recommendedArticles.map((article: Article) => (
 					<Link
